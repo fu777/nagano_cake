@@ -10,7 +10,7 @@
     <%= f.label "(名)" %>
     <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder: "道子" %>
   </div>
-  
+
   <div class="field">
     フリガナ
     <%= f.label "(セイ)" %>
@@ -18,31 +18,29 @@
     <%= f.label "(メイ)" %>
     <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", placeholder: "ミチコ" %>
   </div>
-  
+
   <div class="field">
     <%= f.label "メールアドレス" %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@exsample.com" %>
   </div>
-  
+
   <div class="field">
     <%= f.label "郵便番号(ハイフンなし)" %>
     <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "0000000" %>
   </div>
-  
+
   <div class="field">
     <%= f.label "住所" %>
     <%= f.text_field :address, autofocus: true, autocomplete: "address", placeholder: "東京都渋谷区代々木神園町０−０" %>
   </div>
-  
+
   <div class="field">
-    <%= f.label "郵便番号(ハイフンなし)" %>
+    <%= f.label "電話番号(ハイフンなし)" %>
     <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", placeholder: "0000000000" %>
   </div>
 
   <div class="field">
     <%= f.label "パスワード(６文字以上)" %>
-    <% if @minimum_password_length %>
-    <% end %>
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
