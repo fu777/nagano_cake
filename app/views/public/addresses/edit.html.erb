@@ -1,0 +1,11 @@
+<h1>配送先編集</h1>
+
+<%= form_with model: @address, url: address_path(@address), method: :patch do |f| %>
+  <%= f.label "郵便番号(ハイフンなし)" %>
+  <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "0000000" %><br>
+  <%= f.label "住所" %>
+  <%= f.text_field :address, autofocus: true, autocomplete: "address", placeholder: "東京都渋谷区代々木神園町0-0" %><br>
+  <%= f.label "宛名" %>
+  <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "令和道子" %>
+  <%= f.submit "変更内容を保存" %>
+<% end %>

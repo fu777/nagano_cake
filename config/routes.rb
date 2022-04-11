@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     patch 'customers/withdraw', as: 'withdraw'
     get 'customers/my_page' => 'customers#show', as: 'my_page'
     resources :customers, only: [:edit, :update]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
 
   devise_for :customers, skip: [:passwords], controllers: {
