@@ -6,11 +6,11 @@
   <%= f.label "商品名" %>
   <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "商品名" %><br>
   <%= f.label "商品説明" %>
-  <%= f.text_field :introduction, autofocus: true, autocomplete: "introduction", placeholder: "ここに説明文を記述します" %><br>
+  <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", placeholder: "ここに説明文を記述します" %><br>
   <%= f.label "ジャンル" %>
   <%= f.select :genre_id, options_from_collection_for_select(@genres.all, :id, :name, @genre.id) %><br>
-  <%= f.label "税抜価格" %>
-  <%= f.text_field :price, autofocus: true, autocomplete: "price", placeholder: "1000" %><br>
+  <%= f.label "税抜価格" %>円
+  <%= f.text_field :price, autofocus: true, autocomplete: "price", placeholder: "1000" %>円<br>
   <%= f.label "販売ステータス" %>
   <%= f.radio_button :is_active, "true" %>
   <%= f.label :is_active, "販売中" %>

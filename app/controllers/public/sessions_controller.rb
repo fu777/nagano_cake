@@ -25,9 +25,7 @@ class Public::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   
-  before_action :customer_state, only: [:create]
-  
-  protected
+    before_action :customer_state, only: [:create]
   
     def customer_state
       @customer = Customer.find_by(email: params[:customer][:email])
@@ -36,5 +34,5 @@ class Public::SessionsController < Devise::SessionsController
         redirect_to new_customer_session_path
       end
     end
-  
+    
 end

@@ -5,5 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :addre, dependent: :destroy
-
+  
+  enum is_deleted: {true: true, false: false}
+  
 end

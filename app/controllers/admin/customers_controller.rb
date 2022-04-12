@@ -1,28 +1,23 @@
-class Public::CustomersController < ApplicationController
+class Admin::CustomersController < ApplicationController
+  
+  def index
+    @customers = Customer.all
+    
+  end
 
   def show
-    @customer = current_customer
+    @customer = Customer.find(params[:id])
   end
 
   def edit
-    @customer = current_customer
+    @customer = Customer.find(params[:id])
+    redirect_to edit_admin_customer_path
   end
-
+  
   def update
-    @customer = current_customer
+    @customer = Customer.find(params[:id])
     @customer.update(customer_params)
-    redirect_to my_page_path
-  end
-
-  def unsubscribe
-    @customer = Customer.find_by(email: params[:email])
-  end
-
-  def withdraw
-    @customer = Customer.find_by(email: params[:email])
-    @customer.update(is_deleted: true)
-    reset_session
-    redirect_to root_path
+    redirect_to admin_customer_path
   end
   
   private
@@ -39,5 +34,5 @@ class Public::CustomersController < ApplicationController
                                      :telephone_number,
                                      :is_deleted)
   end
-
+  
 end

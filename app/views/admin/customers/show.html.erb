@@ -1,16 +1,17 @@
-<h1>マイページ</h1>
-
-<label>登録情報</label>
-<%= link_to "編集する", edit_path %>
+<h1><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h1>
 
 <table>
   <tbody>
+    <tr>
+      <th>会員ID</th>
+      <td><%= @customer.id %></td>
+    </tr>
     <tr>
       <th>氏名</th>
       <td><%= @customer.last_name %> <%= @customer.first_name %></td>
     </tr>
     <tr>
-      <th>カナ</th>
+      <th>フリガナ</th>
       <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
     </tr>
     <tr>
@@ -29,10 +30,12 @@
       <th>メールアドレス</th>
       <td><%= @customer.email %></td>
     </tr>
+    <tr>
+      <th>会員ステータス</th>
+      <td><%= @customer.is_deleted_i18n %></td>
+    </tr>
   </tbody>
 </table>
 
-<label>配送先</label>
-<%= link_to "一覧を見る", addresses_path %><br>
-<label>注文履歴</label>
+<%= link_to "編集する", edit_admin_customer_path %>
 

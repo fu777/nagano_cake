@@ -5,3 +5,10 @@ ja:
         true: "販売中"
         false: "販売停止中"
         
+ja:
+  enums:
+    customer:
+      is_deleted:
+        true: "無効"
+        false: "有効"
+      

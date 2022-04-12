@@ -1,0 +1,13 @@
+<div>
+  <%= image_tag @item.image %>
+</div>
+<div>
+  <%= @item.name %><br>
+  <%= @item.introduction %><br>
+  ¥<%= @item.price.to_s(:delimited) %>(税込)<br>
+  <%= form_with model: @item, url: item_path, method: :patch do |f| %>
+    <%= f.select :amount, *[1..10], autofocus: true, autocomplete: "amount", placeholder: "個数選択" %>
+    <%= f.hidden_field :item_id, :value @item_id %>
+    <%= f.submit "カートに入れる" %>
+   <% end %>
+</div>
