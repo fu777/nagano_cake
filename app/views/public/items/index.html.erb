@@ -2,6 +2,8 @@
 
 <% @items.each do |item| %>
   <%= image_tag item.image %><br>
-  <%= item.name %><br>
+  <%= link_to item_path(item.id) do %>
+  <%= item.name %>
+  <% end %><br>
   ¥<%= item.price.to_s(:delimited) %><br>
 <% end %>
