@@ -5,9 +5,9 @@
 <p>会員でない方も商品の閲覧はできますが、</p>
 <p>購入には会員登録が必要になります。</p>
 
-<h4>新着情報</h4>
+<h1>新着商品</h1>
 
-<% @items.each do |item| %>
+<% @item.each do |item| %>
   <%= image_tag item.image %>
   <%= item.name %>
   ¥<%= item.price.to_s(:delimited) %>
