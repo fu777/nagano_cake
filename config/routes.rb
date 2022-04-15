@@ -15,7 +15,7 @@ Rails.application.routes.draw do
         delete 'destroy_all'
       end
     end
-    post 'orders/confirm' => 'orders#confirm', as: 'comfirm'
+    post 'orders/confirm' => 'orders#confirm', as: 'confirm'
     get 'orders/complete' => 'orders#complete', as: 'complete'
     resources :orders, only: [:new, :create, :index, :show,]
   end
@@ -25,7 +25,8 @@ Rails.application.routes.draw do
     resources :items, only: [:new, :show, :index, :create, :update, :edit]
     resources :customers, only: [:index, :show, :edit, :update]
     root to: "homes#top"
-    resources :order_details, only: [:index, :show, :update]
+    resources :orders, only: [:show, :index, :update]
+    resources :order_details, only: [:update]
   end
 
   devise_for :customers, skip: [:passwords], controllers: {

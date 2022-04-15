@@ -1,7 +1,6 @@
 class Admin::OrderDetailsController < ApplicationController
-  def show
+  
+  def update
   end
 
-  def index
-  end
 end
