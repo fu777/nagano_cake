@@ -47,3 +47,8 @@
 <%= @order.name %><br>
 
 <%= link_to "注文を確定する", complete_path %>
+
+<%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
+  <%= f.hidden_field :item_id, :value => @item.id %>
+  <%= f.submit "注文を確定する" %>
+<% end %>
