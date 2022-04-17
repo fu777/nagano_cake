@@ -1,46 +1,65 @@
 class Public::OrdersController < ApplicationController
-  
+
   def new
+    @order = Order.new
     @addresses = Address.all
     @customer = current_customer
-    @customer_address = current_customer.address_display
   end
 
   def confirm
-    @order = current_customer.orders.new(order_params)
-    @order.save
+    @order = Order.new(order_params)
+    @cart_items = current_customer.cart_items.all
+    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+    @shipping_cost = 800
+    @total_payment = @total + @shipping_cost
+  end
+
+  def complete
     @cart_items = current_customer.cart_items.all
       @cart_items.each do |cart_item|
-        @order_items = @order.order_items.new
-        @order_items.item_id = cart_item.item.id
-        @order_items.image = cart_item.item.image
-        @order_items.name = cart_item.item.name
-        @order_items.with_tax_price = cart_item.item.with_tax_price
-        @order_items.amount = cart_item.amount
-        @order_items.subtotal = cart_item.subtotal
-        @order_items.total = cart_item.total
-        @order_items.save
+        @order_details = @order.order_items.new
+        @order_details.item_id = cart_item.item.id
+        @order_details.image = cart_item.item.image
+        @order_details.name = cart_item.item.name
+        @order_details.with_tax_price = cart_item.item.with_tax_price
+        @order_details.amount = cart_item.amount
+        @order_details.subtotal = cart_item.subtotal
+        @order_details.total = cart_item.total
+        @order_details.save
+        redirect_to complete_path
         current_customer.cart_items.destroy_all
       end
   end
 
-  def complete
+  def create
+    @order = Order.new(order_params)
+    if params[:select_address] == 0
+      @order.postal_code = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.name = current_customer.first_name + current_customer.last_name
+    elsif params[:select_address] == "1"
+      @address = Address.find(params[:order][:address_id])
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
+      @order.name = @address.name
+    else
+      @order.postal_code = params[:postal_code]
+      @order.address = params[:address]
+      @order.name = params[:name]
+    end
+    redirect_to confirm_path
   end
 
-  def create
-    
-  end
-  
   def index
   end
 
   def show
   end
-  
+
   private
-  
+
   def order_params
     params.require(:order).permit(:image, :customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
   end
-  
+
 end
