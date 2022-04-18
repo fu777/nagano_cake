@@ -43,7 +43,7 @@
 支払い方法
 <%= @order.payment_method_i18n %><br>
 お届け先
-<%= @order.postal_code %> <%= @order.address %><br>
+〒<%= @order.postal_code %> <%= @order.address %><br>
 <%= @order.name %><br>
 
 <%= link_to "注文を確定する", complete_path %>
