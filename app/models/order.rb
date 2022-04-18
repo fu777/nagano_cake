@@ -10,4 +10,5 @@ class Order < ApplicationRecord
                 ready_to_ship: 3,
                 sent: 4}
 
+
 end

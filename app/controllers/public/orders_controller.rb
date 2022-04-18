@@ -48,14 +48,17 @@ class Public::OrdersController < ApplicationController
         @order_details.save
         current_customer.cart_items.destroy_all
       end
-    
+
     redirect_to complete_path
   end
 
   def index
+    @orders = current_customer.order.all
+    @order_details = current_customer.order_detail.all
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   private
