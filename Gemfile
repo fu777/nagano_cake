@@ -59,4 +59,6 @@ gem 'devise'
 
 gem 'enum_help'
 
+gem 'devise-i18n'
+
 gem 'pry-byebug', group: :development

@@ -2,7 +2,7 @@
 
 <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
 
-<%= render 'address_error', order: @address %>
+<%= render 'address_error', address: @address %>
 
   <%= f.label "郵便番号(ハイフンなし)" %>
   <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "0000000" %><br>
@@ -35,10 +35,10 @@
         <%= address.name %>
       </td>
       <td>
-        <%= link_to "編集する", addresses_path %>
+        <%= link_to "編集する", edit_address_path(address.id) %>
       </td>
       <td>
-        <%= link_to "削除する", addresses_path(@address), method: :delete, "data-confirm" => "本当に消しますか？" %>
+        <%= link_to "削除する", address_path(address), method: :delete, "data-confirm" => "本当に消しますか？" %>
       </td>
     </tr>
   </tbody>
