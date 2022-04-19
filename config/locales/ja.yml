@@ -4,33 +4,20 @@ ja:
       is_active:
         true: "販売中"
         false: "販売停止中"
-        
-ja:
-  enums:
     customer:
       is_deleted:
         true: "無効"
         false: "有効"
-
-ja:
-  enums:
     order:
       payment_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
-
-ja:
-  enums:
-    order:
       status:
         waiting_for_deposit: "入金待ち"
         payment_confirmation: "入金確認"
         production: "製作中"
         ready_to_ship: "発送準備中"
         sent: "発送済み"
-
-ja:
-  enums:
     order_detail:
       making_status:
         not_manufactured: "製作不可"
