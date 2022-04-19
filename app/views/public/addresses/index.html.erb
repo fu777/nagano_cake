@@ -1,6 +1,9 @@
 <h1>配送先登録/一覧</h1>
 
 <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
+
+<%= render 'address_error', order: @address %>
+
   <%= f.label "郵便番号(ハイフンなし)" %>
   <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "0000000" %><br>
   <%= f.label "住所" %>

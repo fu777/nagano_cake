@@ -1,6 +1,9 @@
 <h1>ジャンル編集</h1>
 
 <%= form_with model: @genre, url: admin_genre_path do |f| %>
+
+<%= render 'genre_error', genre: @genre %>
+
   <%= f.label "ジャンル名" %>
   <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ジャンル名" %>
   <%= f.submit "変更を保存" %>

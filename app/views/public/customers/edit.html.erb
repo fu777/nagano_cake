@@ -2,6 +2,8 @@
 
 <%= form_with model: @customer, url: update_path, method: :patch do |f| %>
 
+<%= render 'customer_error', customer: @customer %>
+
   <div class="field">
     <%= f.label "氏名" %>
     <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder: "令和" %>

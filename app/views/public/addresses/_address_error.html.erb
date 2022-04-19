@@ -1,0 +1,8 @@
+<% if address.errors.any? %>
+  <h3><%= address.errors.count %>件のエラーが発生しました</h3>
+  <ul>
+    <% order.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>

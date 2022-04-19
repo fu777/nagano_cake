@@ -6,8 +6,12 @@
   <%= @item.introduction %><br>
   ¥<%= @item.price.to_s(:delimited) %>(税込)<br>
   <%= form_with model: @cart_item, url: cart_items_path, method: :post, local: true do |f| %>
+  
+  <% if @item.errors.any? %>
+  <h3>個数を選択してください。</h3>
+  <% end %>
+
     <%= f.select :amount, *[1..10], { include_blank: '個数選択' }, autofocus: true, autocomplete: "amount" %>
-    <%= f.hidden_field :customer_id, :value => current_customer.id %>
     <%= f.hidden_field :item_id, :value => @item.id %>
     <%= f.submit "カートに入れる" %>
    <% end %>
