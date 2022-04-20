@@ -1,12 +1,14 @@
 class Public::ItemsController < ApplicationController
 
   def index
-    @items = Item.where(is_active: true)
+    @genres = Genre.all
+    @items = params[:name].present? ? Genre.find(params[:name]).items : Item.where(is_active: true)
   end
 
   def show
     @item = Item.find(params[:id])
     @cart_item = CartItem
+    @genres = Genre.all
   end
 
   private

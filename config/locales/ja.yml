@@ -24,3 +24,32 @@ ja:
         waiting_for_deposit: "製作待ち"
         production: "製作中"
         production_completed: "製作完了"
+  activerecord:
+    models:
+      item: "商品"
+      genre: "ジャンル"
+      customer: "会員"
+      address: "配送先"
+    attributes:
+      item:
+        image: "商品画像"
+        name: "商品名"
+        introduction: "商品説明文"
+        price: "税抜価格"
+      genre:
+        name: "ジャンル名"
+      customer:
+        last_name: "姓"
+        first_name: "名"
+        last_name_kana: "姓カナ"
+        first_name_kana: "名カナ"
+        email: "メールアドレス"
+        encrypted_password: "パスワード"
+        postal_code: "郵便番号"
+        address: "住所"
+        telephone_number: "電話番号"
+        is_deleted: "退会ステータス"
+      address:
+        name: "宛名"
+        postal_code: "郵便番号"
+        address: "住所"

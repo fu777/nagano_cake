@@ -1,9 +1,22 @@
-<h1>商品一覧(全<%= @items.count %>件)</h1>
+<%= render 'genre', genres: @genres %>
 
-<% @items.each do |item| %>
-  <%= image_tag item.image %><br>
-  <%= link_to item_path(item.id) do %>
-  <%= item.name %>
-  <% end %><br>
-  ¥<%= item.price.to_s(:delimited) %><br>
+<%= form_tag items_path, method: :get do %>
+
+  <h1>
+    <% if params[:name].present? %>
+      <%= Genre.find(params[:name]).name %>
+    <% else %>
+      商品
+    <% end %>
+    一覧(全<%= @items.count %>件)
+  </h1>
+
+  <% @items.each do |item| %>
+    <%= image_tag item.image %><br>
+    <%= link_to item_path(item.id) do %>
+    <%= item.name %>
+    <% end %><br>
+    ¥<%= item.price.to_s(:delimited) %><br>
+  <% end %>
+
 <% end %>

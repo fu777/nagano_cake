@@ -1,4 +1,4 @@
-
+<%= render 'public/items/genre', genres: @genres %>
 
 <p>ようこそ、ながのCAKEへ！</p>
 <p>このサイトは、ケーキ販売のECサイトになります。</p>
@@ -13,4 +13,4 @@
   ¥<%= item.price.to_s(:delimited) %>
 <% end %>
 
-<%= link_to "全ての商品を見る", items_path %>
+<%= link_to "全ての商品を見る＞", items_path %>
