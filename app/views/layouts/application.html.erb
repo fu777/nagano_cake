@@ -58,10 +58,10 @@
           <%= link_to "ログイン", new_customer_session_path %>
         </li>
       <% end %>
-      <%= form_tag root_path, method: :get do %>
+      <%= form_tag search_path, method: :get do %>
         <%= text_field_tag :search, params[:search], placeholder: "Search" %>
-        <%= button_tag :type => "submit" do %>
-          <i class="fas fa-search"></i>検索
+        <%= button_tag :type => "submit", :name => nil do %>
+          <i class="fas fa-search"></i>
         <% end %>
       <% end %>
     </header>
