@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     get 'orders/complete' => 'orders#complete', as: 'complete'
     resources :orders, only: [:new, :create, :index, :show,]
   end
-  
+
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
