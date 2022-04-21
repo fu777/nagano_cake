@@ -1,8 +1,8 @@
 class SearchesController < ApplicationController
 
   def search
-    @genres = Genre.search(params[:search])
     @items = Item.search(params[:search])
+    @genres = Genre.all
   end
 
 end

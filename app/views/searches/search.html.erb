@@ -1,3 +1,5 @@
+<%= render 'public/items/genre', genres: @genres %>
+
 <% @items.each do |item| %>
   <%= image_tag item.image %><br>
   <%= link_to item_path(item.id) do %>

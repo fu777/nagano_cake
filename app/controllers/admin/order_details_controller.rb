@@ -1,5 +1,7 @@
 class Admin::OrderDetailsController < ApplicationController
 
+  skip_before_action :authenticate_customer!, only: [:update]
+
   def update
     @order_detail = OrderDetail.find(params[:order_detail][:order_detail_id])
     @order = @order_details.order
