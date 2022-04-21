@@ -2,7 +2,7 @@ class Public::ItemsController < ApplicationController
 
   def index
     @genres = Genre.all
-    @items = params[:name].present? ? Genre.find(params[:name]).items : Item.where(is_active: true)
+    @items = params[:name].present? ? Genre.find(params[:name]).items : Item.all
   end
 
   def show

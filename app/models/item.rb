@@ -21,7 +21,7 @@ class Item < ApplicationRecord
 
   def self.search(search)
     if search
-      Item.where(["name LIKE?", "%#{search}%"]).where(is_active: true)
+      Item.where(["name LIKE?", "%#{search}%"])
     end
   end
 

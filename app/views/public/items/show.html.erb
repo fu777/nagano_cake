@@ -5,9 +5,13 @@
   <%= @item.name %><br>
   <%= @item.introduction %><br>
   ¥<%= @item.price.to_s(:delimited) %>(税込)<br>
-  <%= form_with model: @cart_item, url: cart_items_path, method: :post, local: true do |f| %>
-    <%= f.select :amount, *[1..10], { include_blank: '個数選択' }, autofocus: true, autocomplete: "amount" %>
-    <%= f.hidden_field :item_id, :value => @item.id %>
-    <%= f.submit "カートに入れる" %>
-   <% end %>
+  <% if Item.find_by(params[:is_active]) && (@item.is_active == 'true') %>
+    <%= form_with model: @cart_item, url: cart_items_path, method: :post, local: true do |f| %>
+      <%= f.select :amount, *[1..10], { include_blank: '個数選択' }, autofocus: true, autocomplete: "amount" %>
+      <%= f.hidden_field :item_id, :value => @item.id %>
+      <%= f.submit "カートに入れる" %>
+    <% end %>
+  <% else %>
+    <%= "販売停止中" %>
+  <% end %>
 </div>
