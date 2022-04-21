@@ -1,6 +1,7 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_with model: @admin, url: admin_registration_path, id: 'new_admin', class: 'new_admin' do |f| %>
+<!--<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>-->
   <%= render "admin/shared/error_messages", resource: resource %>
 
   <div class="field">

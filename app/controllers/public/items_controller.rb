@@ -2,7 +2,7 @@ class Public::ItemsController < ApplicationController
 
   def index
     @genres = Genre.all
-    @items = params[:name].present? ? Genre.find(params[:name]).items : Item.all
+    @items = params[:name].present? ? Genre.find(params[:name]).items : Item.page(params[:page])
   end
 
   def show

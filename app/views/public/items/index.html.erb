@@ -19,4 +19,8 @@
     ¥<%= item.price.to_s(:delimited) %><br>
   <% end %>
 
+  <% if !params[:name].present? %>
+    <%= paginate @items %>
+  <% end %>
+
 <% end %>
