@@ -35,7 +35,7 @@
     </tr>
     <tr>
     <th>請求金額</th>
-    <td><%= @total_payment %></td>
+    <td><%= @total_payment.to_s(:delimited) %></td>
     </tr>
   </tbody>
 </table>
@@ -55,5 +55,9 @@
     </tr>
   </tbody>
 </table>
+
+<%= form_with model: @order, url: orders_path, method: :post do |f| %>
+  <%= f.submit "注文を確定する" %>
+<% end %>
 
 <%= link_to "注文を確定する", complete_path %>
