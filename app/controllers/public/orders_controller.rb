@@ -39,7 +39,7 @@ class Public::OrdersController < ApplicationController
     # @order = current_customer.orders.new(order_params)
     # @order = Order.new(order_params)
     @order = Order.new
-    cart_items = current_customer.cart_items.all
+    @cart_items = current_customer.cart_items.all
     # @order.payment_method = params[:payment_method]
     # @order.postal_code = params[:postal_code]
     # @order.address = params[:address]
@@ -51,14 +51,14 @@ class Public::OrdersController < ApplicationController
     # @order.status = 1
     @order.save
     # @cart_items = current_customer.cart_items.all
-      cart_items.each do |cart_item|
-        order_detail = @order.order_details.new
-        order_detail.item_id = cart_item.item_id
-        order_detail.order_id = @order.id
-        order_detail.price = cart_item.item.with_tax_price
-        order_detail.amount = cart_item.amount
-        order_detail.making_status = 0
-        order_detail.save
+      @cart_items.each do |cart_item|
+        @order_detail = @order.order_details.new
+        @order_detail.item_id = cart_item.item_id
+        @order_detail.order_id = @order.id
+        @order_detail.price = cart_item.item.with_tax_price
+        @order_detail.amount = cart_item.amount
+        @order_detail.making_status = 0
+        @order_detail.save
       end
     # @order.save
     redirect_to complete_path
