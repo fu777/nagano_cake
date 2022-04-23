@@ -1,6 +1,6 @@
 class Admin::CustomersController < ApplicationController
 
-  skip_before_action :authenticate_customer!, only: [:index, :show, :edit, :update]
+  # skip_before_action :authenticate_customer!, only: [:index, :show, :edit, :update]
 
   def index
     @customers = Customer.page(params[:page])

@@ -14,7 +14,7 @@
     <tr>
       <td>
         <%= link_to admin_order_path(order) do %>
-          <%= order.created_at %>
+          <%= l order.created_at, format: :long %>
         <% end %>
       </td>
       <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
