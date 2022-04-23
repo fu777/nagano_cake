@@ -42,7 +42,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @customer = current_customer
-    @order.status = 1
+    @order.status = 0
     @order.save
       @cart_items.each do |cart_item|
         @order_detail = OrderDetail.new
@@ -59,12 +59,11 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = current_customer.orders.all
-    @order_details = OrderDetail.all
   end
 
   def show
     @order = Order.find(params[:id])
-    @order_details = OrderDetail.all
+    @order_details = @order.order_details
     @total = @order_details.inject(0) { |sum, item| sum + item.subtotal }
   end
 

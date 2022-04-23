@@ -8,7 +8,7 @@
 <h1>新着商品</h1>
 
 <% @item.each do |item| %>
-  <%= image_tag item.image %>
+  <%= image_tag item.image, size: "300x300" %>
   <%= item.name %>
   ¥<%= item.price.to_s(:delimited) %>
 <% end %>

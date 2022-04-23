@@ -39,3 +39,7 @@
 
 <%= link_to "編集する", edit_admin_customer_path %>
 
+<%= form_with model: @order, url: admin_orders_path, method: :get do |f| %>
+<%= f.hidden_field :customer_id, :value => @customer.id %>
+<%= f.submit "注文履歴一覧を見る" %>
+<% end %>
