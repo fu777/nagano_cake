@@ -1,8 +1,8 @@
 class Order < ApplicationRecord
 
-  belongs_to :costomer
+  belongs_to :customer
   has_many :order_details, dependent: :destroy
-  
+
   validates :customer_id, presence: true
   validates :postal_code, presence: true
   validates :address, presence: true
@@ -18,6 +18,5 @@ class Order < ApplicationRecord
                 production: 2,
                 ready_to_ship: 3,
                 sent: 4}
-
 
 end

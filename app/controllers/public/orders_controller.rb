@@ -8,6 +8,7 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
+    @new_order = Order.new
     @cart_items = current_customer.cart_items.all
     @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
     @shipping_cost = 800
@@ -22,37 +23,29 @@ class Public::OrdersController < ApplicationController
       @order.address = @address.address
       @order.name = @address.name
     else
+      @address_new = current_customer.addresses.new
       @order.postal_code = params[:postal_code]
       @order.address = params[:address]
       @order.name = params[:name]
+      if @address_new.save
+      else
+        render :new
+      end
     end
   end
 
   def complete
-    # @order = Order.new
-    # @order = Order.new(order_params)
-    # @order.save
-    # current_customer.cart_items.destroy_all
   end
 
   def create
-    # @order = current_customer.orders.new(order_params)
-    # @order = Order.new(order_params)
-    @order = Order.new
     @cart_items = current_customer.cart_items.all
-    # @order.payment_method = params[:payment_method]
-    # @order.postal_code = params[:postal_code]
-    # @order.address = params[:address]
-    # @order.name = params[:name]
-    # @order.customer_id = current_customer
-    # @order.shipping_cost = 800
-    # @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
-    # @order.total_payment = @total.to_i + @shipping_cost.to_i
-    # @order.status = 1
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @customer = current_customer
+    @order.status = 1
     @order.save
-    # @cart_items = current_customer.cart_items.all
       @cart_items.each do |cart_item|
-        @order_detail = @order.order_details.new
+        @order_detail = OrderDetail.new
         @order_detail.item_id = cart_item.item_id
         @order_detail.order_id = @order.id
         @order_detail.price = cart_item.item.with_tax_price
@@ -60,23 +53,29 @@ class Public::OrdersController < ApplicationController
         @order_detail.making_status = 0
         @order_detail.save
       end
-    # @order.save
     redirect_to complete_path
     current_customer.cart_items.destroy_all
   end
 
   def index
     @orders = current_customer.orders.all
+    @order_details = OrderDetail.all
   end
 
   def show
     @order = Order.find(params[:id])
+    @order_details = OrderDetail.all
+    @total = @order_details.inject(0) { |sum, item| sum + item.subtotal }
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:image, :customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
+    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
+  end
+
+  def address_params
+    params.require(:address).permit(:name, :postal_code, :address)
   end
 
 end
