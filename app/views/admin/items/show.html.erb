@@ -1,29 +1,56 @@
-<h1>商品詳細</h1>
+<div class="container">
+  <div class="row m-3">
+    <h1 class="bg-light">商品詳細</h1>
+  </div>
 
-<%= image_tag @item.image, size: "400x300" %>
+  <div class="row">
 
-<table>
-  <tbody>
-    <tr>
-      <th>商品名</th>
-      <td><%= @item.name %></td>
-    </tr>
-    <tr>
-      <th>商品説明</th>
-      <td><%= @item.introduction %></td>
-    </tr>
-    <tr>
-      <th>ジャンル</th>
-      <td><%= @item.genre.name %></td>
-    </tr>
-    <tr>
-      <th>税込価格(税抜価格)</th>
-      <td><%= @item.price.to_s(:delimited) %>(<%= @item.with_tax_price.to_s(:delimited) %>)円</td>
-    </tr>
-    <tr>
-      <th>販売ステータス</th>
-      <td><%= @item.is_active_i18n %></td>
-    </tr>
-  </tbody>
-</table>
-<%= link_to "編集する", edit_admin_item_path %>
+    <div class="col-4">
+      <%= image_tag @item.image, size: "300x300" %>
+    </div>
+
+    <div class="col-8">
+      <div class="row">
+
+        <table>
+          <tbody>
+            <tr>
+              <td>商品名</td>
+              <td class="pl-5"><%= @item.name %></td>
+            </tr>
+            <tr>
+              <td>商品説明</td>
+              <td class="pl-5"><%= @item.introduction %></td>
+            </tr>
+            <tr>
+              <td>ジャンル</td>
+              <td class="pl-5"><%= @item.genre.name %></td>
+            </tr>
+            <tr>
+              <td>税込価格(税抜価格)</td>
+              <td class="pl-5"><%= @item.price.to_s(:delimited) %>(<%= @item.with_tax_price.to_s(:delimited) %>)円</td>
+            </tr>
+            <tr>
+              <td>販売ステータス</td>
+              <% if @item.is_active == true %>
+                <td class="pl-5 text-danger">
+                  <%= @item.is_active_i18n %>
+                </td>
+              <% else %>
+                <td class="pl-5 text-success">
+                  <%= @item.is_active_i18n %>
+                </td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-12 d-flex justify-content-center mb-10">
+    <%= link_to "編集する", edit_admin_item_path, class: 'btn btn-success' %>
+  </div>
+</div>

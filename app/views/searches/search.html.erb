@@ -1,9 +1,19 @@
 <%= render 'public/items/genre', genres: @genres %>
 
-<% @items.each do |item| %>
-  <%= image_tag item.image %><br>
-  <%= link_to item_path(item.id) do %>
-  <%= item.name %>
-  <% end %><br>
-  ¥<%= item.price.to_s(:delimited) %><br>
-<% end %>
+    <div class="col-10">
+
+      <div class="row mt-3 mb-3">
+        <% @items.each do |item| %>
+        <div class="col-3 mb-3">
+          <%= image_tag item.image, size: "200x200" %><br>
+          <%= link_to item_path(item.id) do %>
+          <%= item.name %>
+          <% end %><br>
+          ¥<%= item.price.to_s(:delimited) %><br>
+        </div>
+        <% end %>
+      </div>
+
+      </div>
+    </div>
+  </div>

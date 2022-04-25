@@ -1,17 +1,35 @@
-<div>
-  <%= image_tag @item.image, size: "400x400" %>
-</div>
-<div>
-  <%= @item.name %><br>
-  <%= @item.introduction %><br>
-  ¥<%= @item.price.to_s(:delimited) %>(税込)<br>
-  <% if Item.find_by(params[:is_active]) && (@item.is_active == 'true') %>
-    <%= form_with model: @cart_item, url: cart_items_path, method: :post, local: true do |f| %>
-      <%= f.select :amount, *[1..10], { include_blank: '個数選択' }, autofocus: true, autocomplete: "amount" %>
-      <%= f.hidden_field :item_id, :value => @item.id %>
-      <%= f.submit "カートに入れる" %>
-    <% end %>
-  <% else %>
-    <%= "販売停止中" %>
-  <% end %>
-</div>
+<%= render 'genre', genres: @genres %>
+
+    <div class="col-4">
+        <%= image_tag @item.image, size: "300x300" %>
+    </div>
+    <div class="col-6">
+        <h2 class="fw-bold"><%= @item.name %><br></h2>
+        <p class="fs-20"><%= @item.introduction %><br></p>
+        <p class="fs-20">¥<%= @item.price.to_s(:delimited) %>(税込)<br></p>
+    <% if Item.find_by(params[:is_active]) && (@item.is_active == 'true') %>
+      <div class="row">
+        <div class="col-3">
+          <div class="form-group">
+            <%= form_with model: @cart_item, url: cart_items_path, method: :post, local: true do |f| %>
+            <div class="field_with_errors">
+              <%= f.select :amount, *[1..10], { include_blank: '個数選択' }, autofocus: true, autocomplete: "amount" %>
+              <%= f.hidden_field :item_id, :value => @item.id %>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <%= f.submit "カートに入れる", class: 'btn btn-success' %>
+          </div>
+          <% end %>
+        </div>
+        <% else %>
+          <%= "販売停止中" %>
+        <% end %>
+      </div>
+    </div>
+
+      </div>
+    </div>
+  </div>
