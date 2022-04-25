@@ -1,16 +1,35 @@
-<%= render 'public/items/genre', genres: @genres %>
+  <%= render 'public/items/genre', genres: @genres %>
 
-<p>ようこそ、ながのCAKEへ！</p>
-<p>このサイトは、ケーキ販売のECサイトになります。</p>
-<p>会員でない方も商品の閲覧はできますが、</p>
-<p>購入には会員登録が必要になります。</p>
+    <div class="col-10">
+      <div class="top_image">
+        <div class="top_box">
+          <p class="top_text">
+            ようこそ、ながのCAKEへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。<br>
+          </p>
+        </div>
+      </div>
 
-<h1>新着商品</h1>
+      <div class="row mt-3 ml-1">
+        <h1>新着商品</h1>
+      </div>
+      
+      <div class="row mt-3 mb-3">
+        <% @item.each do |item| %>
+        <div class="col-3">
+            <%= image_tag item.image, size: "200x200" %><br>
+            <%= item.name %><br>
+            ¥<%= item.price.to_s(:delimited) %>
+        </div>
+        <% end %>
+      </div>
 
-<% @item.each do |item| %>
-  <%= image_tag item.image, size: "300x300" %>
-  <%= item.name %>
-  ¥<%= item.price.to_s(:delimited) %>
-<% end %>
+      <div class="row d-flex justify-content-end mb-10">
+        <%= link_to "全ての商品を見る＞", items_path %>
+      </div>
 
-<%= link_to "全ての商品を見る＞", items_path %>
+    </div>
+  </div>
+</div>

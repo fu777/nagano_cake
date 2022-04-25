@@ -1,26 +1,40 @@
 <%= render 'genre', genres: @genres %>
 
-<%= form_tag items_path, method: :get do %>
+    <div class="col-10">
 
-  <h1>
-    <% if params[:name].present? %>
-      <%= Genre.find(params[:name]).name %>
-    <% else %>
-      商品
-    <% end %>
-    一覧(全<%= @items.count %>件)
-  </h1>
+      <%= form_tag items_path, method: :get do %>
 
-  <% @items.each do |item| %>
-    <%= image_tag item.image, size: "300x300" %><br>
-    <%= link_to item_path(item.id) do %>
-    <%= item.name %>
-    <% end %><br>
-    ¥<%= item.price.to_s(:delimited) %><br>
-  <% end %>
+      <div class="row mt-3 ml-1">
+        <h1>
+          <% if params[:name].present? %>
+            <%= Genre.find(params[:name]).name %>
+          <% else %>
+            商品
+          <% end %>
+          一覧(全<%= @items.count %>件)
+        </h1>
+      </div>
 
-  <% if !params[:name].present? %>
-    <%= paginate @items %>
-  <% end %>
+      <div class="row mt-3 mb-3">
+        <% @items.each do |item| %>
+        <div class="col-3 mb-2">
+          <%= image_tag item.image, size: "200x200" %><br>
+          <%= link_to item_path(item.id) do %>
+          <%= item.name %>
+          <% end %><br>
+          ¥<%= item.price.to_s(:delimited) %><br>
+        </div>
+        <% end %>
+      </div>
 
-<% end %>
+      <div class="row d-flex justify-content-center mb-10">
+        <% if !params[:name].present? %>
+          <%= paginate @items %>
+        <% end %>
+      </div>
+
+      <% end %>
+
+      </div>
+    </div>
+  </div>

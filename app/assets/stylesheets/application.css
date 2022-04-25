@@ -13,3 +13,37 @@
  *= require_tree .
  *= require_self
  */
+
+.notice {
+  color: green;
+}
+
+#error_explanation {
+  color: red;
+}
+
+.max-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.top_image {
+  height: 400px;
+  background-image: url('28177003400.jpeg');
+  background-repeat:  no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.top_box {
+  border: 2px solid;
+  position: absolute;
+  top: 130px;
+  left: 300px;
+  font-weight: bold;
+}
+
+.top_text {
+  margin: 20px 0px;
+}
