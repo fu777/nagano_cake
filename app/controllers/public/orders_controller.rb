@@ -4,6 +4,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
     @addresses = Address.all
     @customer = current_customer
+    # @address = Address.new
   end
 
   def confirm
@@ -23,14 +24,15 @@ class Public::OrdersController < ApplicationController
       @order.address = @address.address
       @order.name = @address.name
     else
-      @address_new = current_customer.addresses.new
-      @order.postal_code = params[:postal_code]
-      @order.address = params[:address]
-      @order.name = params[:name]
-      if @address_new.save
-      else
-        render :new
-      end
+      # @order.postal_code = params[:order][:postal_code]
+      # @order.address = params[:order][:address]
+      # @order.name = params[:order][:name]
+      # @address = Address.new
+      # if @address.save
+        # flash[:notice] = "配送先を新規登録しました。"
+      # else
+        # render :new
+      # end
     end
   end
 
