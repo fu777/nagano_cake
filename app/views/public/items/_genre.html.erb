@@ -1,18 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="col-2">
-      <!--<div class="border border-dark">-->
-      <table class="table table-bordered table-hover">
-        <thead class="thead-dark">
-          <tr>ジャンル検索</tr>
-        </thead>
-        <% genres.each do |genre| %>
-        <tbody>
-          <tr>
-            <td><%= link_to genre.name, items_path(name: genre.id) %></td>
-          </tr>
-        </tbody>
-        <% end %>
-      </table>
-      <!--</div>-->
+      <div class="border border-dark">
+        <ul class="list-group">
+            <li class="list-unstyled border-bottom border-dark">
+              ジャンル検索
+            </li>
+          <% genres.each do |genre| %>
+          <table class="able table-hover">
+            <tbody>
+              <tr>
+                <td>
+                    <%= link_to genre.name, items_path(name: genre.id) %>
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+          <% end %>
+        </ul>
+      </div>
     </div>
