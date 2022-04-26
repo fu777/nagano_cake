@@ -23,6 +23,7 @@
               <div class="d-flex justify-content-end">
                 <p>ようこそ、<%= current_customer.last_name %>さん！</p>
               </div>
+            <% end %>
           </div>
           <div class ="col-6">
             <div>
@@ -32,6 +33,7 @@
               </button>
               <div class="navbar-collapse collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ml-auto">
+            <% if customer_signed_in? %>
               <li>
                 <%= link_to "マイページ", my_page_path, class: 'nav-link text-dark btn btn-outline-dark m-3' %>
               </li>

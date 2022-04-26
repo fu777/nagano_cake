@@ -48,3 +48,11 @@
   margin: 20px 0px;
 }
 
+table{
+    border-spacing: 10px;
+}
+td,th{
+    padding: 10px;
+}
+
+

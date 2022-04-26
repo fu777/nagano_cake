@@ -4,7 +4,6 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
     @addresses = Address.all
     @customer = current_customer
-    # @address = Address.new
   end
 
   def confirm
@@ -14,25 +13,17 @@ class Public::OrdersController < ApplicationController
     @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
     @shipping_cost = 800
     @total_payment = @total + @shipping_cost
-    if params[:order][:select_address] == "0"
-      @order.postal_code = current_customer.postal_code
-      @order.address = current_customer.address
-      @order.name = current_customer.last_name + current_customer.first_name
+    if params[:order][:select_address] == "2"
+      # @new_address = Address.new
     elsif params[:order][:select_address] == "1"
       @address = Address.find(params[:order][:address_id])
       @order.postal_code = @address.postal_code
       @order.address = @address.address
       @order.name = @address.name
     else
-      # @order.postal_code = params[:order][:postal_code]
-      # @order.address = params[:order][:address]
-      # @order.name = params[:order][:name]
-      # @address = Address.new
-      # if @address.save
-        # flash[:notice] = "配送先を新規登録しました。"
-      # else
-        # render :new
-      # end
+      @order.postal_code = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.name = current_customer.last_name + current_customer.first_name
     end
   end
 
@@ -55,6 +46,8 @@ class Public::OrdersController < ApplicationController
         @order_detail.making_status = 0
         @order_detail.save
       end
+    # @new_address.save
+    # flash[:notice] = "配送先を新規登録しました。"
     redirect_to complete_path
     current_customer.cart_items.destroy_all
   end
@@ -75,8 +68,8 @@ class Public::OrdersController < ApplicationController
     params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
   end
 
-  def address_params
-    params.require(:address).permit(:name, :postal_code, :address)
-  end
+  # def address_params
+    # params.require(:address).permit(:name, :postal_code, :address)
+  # end
 
 end
