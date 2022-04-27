@@ -1,14 +1,24 @@
-<h1>配送先編集</h1>
-
-<%= form_with model: @address, url: address_path(@address), method: :patch do |f| %>
-
-<%= render 'address_error', address: @address %>
-
-  <%= f.label "郵便番号(ハイフンなし)" %>
-  <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "0000000" %><br>
-  <%= f.label "住所" %>
-  <%= f.text_field :address, autofocus: true, autocomplete: "address", placeholder: "東京都渋谷区代々木神園町0-0" %><br>
-  <%= f.label "宛名" %>
-  <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "令和道子" %>
-  <%= f.submit "変更内容を保存" %>
-<% end %>
+<div class="container">
+  <div class="col-12">
+    <div class="row offset-1 my-3">
+      <h3 class="bg-light px-3">配送先編集</h3>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <%= form_with model: @address, url: address_path(@address), method: :patch do |f| %>
+        <%= render 'address_error', address: @address %>
+        <div class="form-group">
+          <%= f.label "郵便番号(ハイフンなし)", class: 'col-3' %>
+          <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "0000000", class: 'col-2' %><br>
+          <%= f.label "住所", class: 'col-3' %>
+          <%= f.text_field :address, autofocus: true, autocomplete: "address", placeholder: "東京都渋谷区代々木神園町0-0", class: 'col-6' %><br>
+          <%= f.label "宛名", class: 'col-3' %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "令和道子", class: 'col-2' %>
+          <label class="col-4"></label>
+          <%= f.submit " 変更内容を保存 ", class: 'btn btn-success text-right' %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
