@@ -55,4 +55,6 @@ td,th{
     padding: 10px;
 }
 
-
+.plus {
+  box-shadow: 3px 3px silver;
+}

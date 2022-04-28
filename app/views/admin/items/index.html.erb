@@ -1,34 +1,57 @@
-<h1>商品一覧</h1>
-
-<%= link_to new_admin_item_path do %>
-  <i class="fas fa-plus"></i>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <% @items.each do |item| %>
-  <tbody>
-    <tr>
-      <td><%= item.id %></td>
-      <td>
-        <%= link_to admin_item_path(item.id) do %>
-          <%= item.name %>
-        <% end %>
-      </td>
-      <td><%= item.price.to_s(:delimited) %></td>
-      <td><%= item.genre.name %></td>
-      <td><%= item.is_active_i18n %></td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
-
-<%= paginate @items %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="row offset-1 my-3">
+        <h3 class="bg-light px-3">商品一覧</h3>
+        <div class="ml-auto mr-5 btn btn-light rounded-circle plus">
+          <%= link_to new_admin_item_path do %>
+            <i class="fas fa-plus"></i>
+          <% end %>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-12">
+          <table class="table table-borderless">
+            <thead class="bg-light border-top">
+              <tr>
+                <th>商品ID</th>
+                <th>商品名</th>
+                <th>税抜価格</th>
+                <th>ジャンル</th>
+                <th>ステータス</th>
+              </tr>
+            </thead>
+            <% @items.each do |item| %>
+            <tbody>
+              <tr>
+                <td><%= item.id %></td>
+                <td>
+                  <%= link_to admin_item_path(item.id) do %>
+                    <%= item.name %>
+                  <% end %>
+                </td>
+                <td><%= item.price.to_s(:delimited) %></td>
+                <td><%= item.genre.name %></td>
+              <% if item.is_active["true"] %>
+                <td class="pl-5 text-success">
+                  <%= item.is_active_i18n %>
+                </td>
+              <% else %>
+                <td class="pl-5 text-secondary">
+                  <%= item.is_active_i18n %>
+                </td>
+              <% end %>
+              </tr>
+            </tbody>
+            <% end %>
+          </table>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-12 d-flex justify-content-center">
+          <%= paginate @items %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

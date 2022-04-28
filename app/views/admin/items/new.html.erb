@@ -1,23 +1,35 @@
-<h1>商品新規登録</h1>
-
-<%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
-
-<%= render 'item_error', item: @item %>
-
-  <%= f.label "商品画像" %>
-  <%= f.file_field :image, accept: "image/*" %><br>
-  <%= f.label "商品名" %>
-  <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "商品名" %><br>
-  <%= f.label "商品説明" %>
-  <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", placeholder: "ここに説明文を記述します" %><br>
-  <%= f.label "ジャンル" %>
-  <%= f.select :genre_id, options_from_collection_for_select(@genres.all, :id, :name) %><br>
-  <%= f.label "税抜価格" %>
-  <%= f.text_field :price, autofocus: true, autocomplete: "price", placeholder: "1000" %>円<br>
-  <%= f.label "販売ステータス" %>
-  <%= f.radio_button :is_active, "true" %>
-  <%= f.label :is_active, "販売中" %>
-  <%= f.radio_button :is_active, "false" %>
-  <%= f.label :is_active, "販売停止中" %><br>
-  <%= f.submit "新規登録" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="row offset-1 my-3">
+        <h3 class="bg-light px-3">商品新規登録</h3>
+      </div>
+      <div class="row offset-2 my-3">
+        <div class="col-10">
+        <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
+        <%= render 'item_error', item: @item %>
+        <div class="form-group">
+            <%= f.label "商品画像", class: 'col-2 mr-5' %>
+            <%= f.file_field :image, accept: "image/*", class: 'col-5' %><br>
+            <%= f.label "商品名", class: 'col-3' %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "商品名", class: 'col-5' %><br>
+            <%= f.label "商品説明", class: 'col-3' %>
+            <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", placeholder: "ここに説明文を記述します", class: 'col-5' %><br>
+            <%= f.label "ジャンル", class: 'col-3' %>
+            <%= f.select :genre_id, options_from_collection_for_select(@genres.all, :id, :name), class: 'col-5' %><br>
+            <%= f.label "税抜価格", class: 'col-3' %>
+            <%= f.text_field :price, autofocus: true, autocomplete: "price", placeholder: "1000", class: 'col-5' %>円<br>
+            <%= f.label "販売ステータス", class: 'col-3' %>
+            <%= f.radio_button :is_active, "true" %>
+            <%= f.label :is_active, "販売中", class: 'mr-3' %>
+            <%= f.radio_button :is_active, "false" %>
+            <%= f.label :is_active, "販売停止中" %><br>
+        </div>
+        <div class="row col-12 d-flex justify-content-center">
+            <%= f.submit "新規登録", class: 'btn btn-success' %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
