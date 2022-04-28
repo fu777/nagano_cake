@@ -1,45 +1,49 @@
-<h1><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h1>
-
-<table>
-  <tbody>
-    <tr>
-      <th>会員ID</th>
-      <td><%= @customer.id %></td>
-    </tr>
-    <tr>
-      <th>氏名</th>
-      <td><%= @customer.last_name %> <%= @customer.first_name %></td>
-    </tr>
-    <tr>
-      <th>フリガナ</th>
-      <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
-    </tr>
-    <tr>
-      <th>郵便番号</th>
-      <td><%= @customer.postal_code %></td>
-    </tr>
-    <tr>
-      <th>住所</th>
-      <td><%= @customer.address %></td>
-    </tr>
-    <tr>
-      <th>電話番号</th>
-      <td><%= @customer.telephone_number %></td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <td><%= @customer.email %></td>
-    </tr>
-    <tr>
-      <th>会員ステータス</th>
-      <td><%= @customer.is_deleted_i18n %></td>
-    </tr>
-  </tbody>
-</table>
-
-<%= link_to "編集する", edit_admin_customer_path %>
-
-<%= form_with model: @order, url: admin_orders_path, method: :get do |f| %>
-<%= f.hidden_field :customer_id, :value => @customer.id %>
-<%= f.submit "注文履歴一覧を見る" %>
-<% end %>
+<div class="container">
+  <div class="col-12">
+    <div class="row offset-1 my-3">
+      <h3 class="bg-light px-3"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h3>
+    </div>
+  <div class="row offset-1 my-3">
+    <div class="col-11">
+      <div class="my-3">
+        <label class="my-2 col-3">会員ID</label>
+        <label class="my-2 col-8"><%= @customer.id %></label><br>
+        <label class="my-2 col-3">氏名</label>
+        <label class="my-2 col-8"><%= @customer.last_name %> <%= @customer.first_name %></label><br>
+        <label class="my-2 col-3">フリガ</label>
+        <label class="my-2 col-8"><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></label><br>
+        <label class="my-2 col-3">郵便番号</label>
+        <label class="my-2 col-8"><%= @customer.postal_code %></label><br>
+        <label class="my-2 col-3">住所</label>
+        <label class="my-2 col-8"><%= @customer.address %></label><br>
+        <label class="my-2 col-3">電話番号</label>
+        <label class="my-2 col-8"><%= @customer.telephone_number %></label><br>
+        <label class="my-2 col-3">メールアドレス</label>
+        <label class="my-2 col-8"><%= @customer.email %></label><br>
+        <label class="my-2 col-3">会員ステータス</label>
+      <% if @customer.is_deleted["true"] %>
+        <label class="text-secondary col-8">
+          <%= @customer.is_deleted_i18n %>
+        </label><br>
+      <% else %>
+        <label class="text-success col-8">
+          <%= @customer.is_deleted_i18n %>
+        </label><br>
+      <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-12">
+      <label class="col-3"></label>
+      <%= link_to "編集する", edit_admin_customer_path, class: 'btn btn-success' %>
+      <label class="mx-5"></label>
+      <label>
+      <%= form_with model: @order, url: admin_orders_path, method: :get do |f| %>
+        <%= f.hidden_field :customer_id, :value => @customer.id %>
+        <%= f.submit "注文履歴一覧を見る", class: 'btn btn-primary' %>
+      <% end %>
+      </label>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@ ja:
         false: "販売停止中"
     customer:
       is_deleted:
-        true: "無効"
+        true: "退会"
         false: "有効"
     order:
       payment_method:
