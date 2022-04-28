@@ -1,30 +1,44 @@
-<h1>ジャンル一覧・追加</h1>
-
-<%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
-
-<%= render 'genre_error', genre: @genre %>
-
-  <%= f.label "ジャンル名" %>
-  <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ジャンル名" %>
-  <%= f.submit "新規登録" %>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>ジャンル名</th>
-    </tr>
-  </thead>
-  <% @genres.each do |genre| %>
-  <tbody>
-    <tr>
-      <td>
-        <%= genre.name %>
-      </td>
-      <td>
-        <%= link_to "編集する", edit_admin_genre_path(genre.id) %>
-      </td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="row offset-1 my-3">
+        <h3 class="bg-light px-3">ジャンル一覧・追加</h3>
+      </div>
+      <div class="row my-3">
+        <div class="col-12">
+          <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
+          <%= render 'genre_error', genre: @genre %>
+          <div class="form-group">
+            <%= f.label "ジャンル名", class: 'font-weight-bold ml-4 mr-5' %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ジャンル名", class: 'col-2 mr-5' %>
+            <%= f.submit "新規登録", class: 'btn btn-success' %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-4">
+          <table class="table">
+            <thead class="bg-light">
+              <tr>
+                <th colspan="2">ジャンル名</th>
+              </tr>
+            </thead>
+            <% @genres.each do |genre| %>
+            <tbody>
+              <tr>
+                <td>
+                  <%= genre.name %>
+                </td>
+                <td>
+                  <%= link_to "編集する", edit_admin_genre_path(genre.id), class: 'btn btn-success' %>
+                </td>
+              </tr>
+            </tbody>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
