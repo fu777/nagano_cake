@@ -1,5 +1,5 @@
 class Admin::OrdersController < ApplicationController
-  # skip_before_action :authenticate_customer!, only: [:index, :show, :update]
+  before_action :authenticate_admin!, only: [:show]
 
   def show
     @order = Order.find(params[:id])

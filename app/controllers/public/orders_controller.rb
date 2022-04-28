@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+  
+  before_action :authenticate_customer!, only: [:index, :show]
 
   def new
     @order = Order.new
