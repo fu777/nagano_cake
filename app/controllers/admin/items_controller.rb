@@ -1,5 +1,5 @@
 class Admin::ItemsController < ApplicationController
-  
+
   skip_before_action :authenticate_customer!, only: [:new, :create, :update, :edit]
   before_action :authenticate_admin!, only: [:new, :index, :show, :create, :edit, :update]
 
@@ -19,7 +19,6 @@ class Admin::ItemsController < ApplicationController
   def edit
     @item = Item.find(params[:id])
     @genres = Genre.all
-    @genre = Genre.find(params[:id])
   end
 
   def create
@@ -27,7 +26,7 @@ class Admin::ItemsController < ApplicationController
     @genres = Genre.all
     if @item.save
       flash[:notice] = "商品を新規登録しました。"
-      redirect_to admin_items_path
+      redirect_to admin_item_path(@item.id)
     else
       render :new
     end
@@ -36,7 +35,6 @@ class Admin::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     @genres = Genre.all
-    @genre = Genre.find(params[:id])
     if @item.update(item_params)
       flash[:notice] = "商品を編集しました。"
       redirect_to admin_item_path(@item.id)

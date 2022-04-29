@@ -1,20 +1,21 @@
 class Public::CartItemsController < ApplicationController
-  
+
   before_action :authenticate_customer!, only: [:index]
 
   def index
     @cart_items = current_customer.cart_items.all
     @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+    # @new_cart_item = CartItem.new
   end
 
   def update
-    @cart_item = CartItem.find_by(params[:item_id])
+    @cart_item = CartItem.find(params[:id])
     @cart_item.update(amount: params[:amount].to_i)
     redirect_to cart_items_path
   end
 
   def destroy
-    @cart_item = CartItem.find_by(params[:id])
+    @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
     redirect_to cart_items_path
   end

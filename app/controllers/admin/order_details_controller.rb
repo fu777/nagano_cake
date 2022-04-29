@@ -4,23 +4,22 @@ class Admin::OrderDetailsController < ApplicationController
   before_action :authenticate_admin!, only: [:update]
 
   def update
-    @order_detail = OrderDetail.find(params[:order_detail][:order_detail_id])
-    @order = @order_details.order
-    if params[:order_detail][:making_status] == 2
-      order.update(status: 2)
-    end
-    order_detail.update(making_status: params[:order_detail][:making_status])
-    status = 0
     @order = Order.find(params[:id])
-    @order.order_details.each do |order_detail|
-      if order_detail.making_status != 4
-        status = 1
-      end
-    end
-    if status == 0
-      order.update(status: 4)
-    end
-    redirect_to admin_orders_path
+    @order_detail = OrderDetail.find(params[:id])
+      # if params[:order_detail][:making_status] == "production"
+      #   @order.update(status: "production")
+      # elsif params[:order_detail][:making_status] != "production_completed"
+      # else
+      #   @order.update(status: "ready_to_ship")
+      # end
+      @order_detail.update(order_detail_params)
+    redirect_to admin_order_path
+  end
+
+  private
+
+  def order_detail_params
+    params.require(:order_detail).permit(:making_status)
   end
 
 end

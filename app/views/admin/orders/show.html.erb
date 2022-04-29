@@ -63,7 +63,7 @@
               <td><%= order_detail.price.to_s(:delimited) %></td>
               <td><%= order_detail.amount %></td>
               <td><%= order_detail.subtotal.to_s(:delimited) %></td>
-              <%= form_with model: @new_status, url: admin_order_detail_path, method: :patch do |f| %>
+              <%= form_with model: @new_making_status, url: admin_order_detail_path, method: :patch do |f| %>
               <td>
                 <%= f.select :making_status, options_for_select(OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]}, order_detail.making_status) %>
               </td>
