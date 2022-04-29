@@ -1,11 +1,13 @@
 class Admin::OrdersController < ApplicationController
-  before_action :authenticate_admin!, only: [:show]
+
+  skip_before_action :authenticate_customer!, only: [:update]
+  before_action :authenticate_admin!, only: [:index, :show, :update]
 
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
     @total = @order_details.inject(0) { |sum, item| sum + item.subtotal }
-    # @new_status = Order.new(order_params)
+    @new_status = Order.new
   end
 
   def index
@@ -15,13 +17,13 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    if params[:status] == "waiting_for_deposit"
-      @order.order_details.each do |order_detail|
-        order_detail.making_status = "payment_confirmation"
-        order_detail.update(making_status: order_detail.making_status)
-      end
-    end
     @order.update(order_params)
+      if @order.status[2]
+        @order.order_details.each do |order_detail|
+          order_detail.making_status = 1
+          order_detail.update(making_status: order_detail.making_status)
+        end
+      end
     redirect_to admin_order_path
   end
 

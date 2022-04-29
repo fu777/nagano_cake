@@ -1,6 +1,7 @@
 class Admin::GenresController < ApplicationController
   
-  before_action :authenticate_admin!, only: [:index]
+  skip_before_action :authenticate_customer!, only: [:create, :update, :edit]
+  before_action :authenticate_admin!, only: [:index, :create, :edit, :update]
 
   def index
     @genre = Genre.new
