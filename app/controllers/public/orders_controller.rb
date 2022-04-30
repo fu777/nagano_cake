@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  
+
   before_action :authenticate_customer!, only: [:index, :show]
 
   def new
@@ -16,7 +16,6 @@ class Public::OrdersController < ApplicationController
     @shipping_cost = 800
     @total_payment = @total + @shipping_cost
     if params[:order][:select_address] == "2"
-      # @new_address = Address.new
     elsif params[:order][:select_address] == "1"
       @address = Address.find(params[:order][:address_id])
       @order.postal_code = @address.postal_code
@@ -48,8 +47,6 @@ class Public::OrdersController < ApplicationController
         @order_detail.making_status = 0
         @order_detail.save
       end
-    # @new_address.save
-    # flash[:notice] = "配送先を新規登録しました。"
     redirect_to complete_path
     current_customer.cart_items.destroy_all
   end
@@ -69,9 +66,5 @@ class Public::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
   end
-
-  # def address_params
-    # params.require(:address).permit(:name, :postal_code, :address)
-  # end
 
 end

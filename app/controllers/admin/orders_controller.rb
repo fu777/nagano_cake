@@ -8,7 +8,6 @@ class Admin::OrdersController < ApplicationController
     @order_details = @order.order_details
     @total = @order_details.inject(0) { |sum, item| sum + item.subtotal }
     @new_status = Order.new
-    @new_making_status = OrderDetail.new
   end
 
   def index
@@ -18,14 +17,14 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    # if params[:order][:status] == "payment_confirmation"
-      # @order.order_details.each do |order_detail|
-        # order_detail.making_status = 1
-        # order_detail.update(making_status: order_detail.making_status)
-      # end
-    # end
     @order.update(order_params)
-    redirect_to admin_order_path
+      if params[:order][:status] == "payment_confirmation"
+        @order.order_details.each do |order_detail|
+          order_detail.making_status = 1
+          order_detail.update(making_status: order_detail.making_status)
+        end
+      end
+    redirect_to admin_order_path(@order)
   end
 
   private
